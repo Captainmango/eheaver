@@ -23,7 +23,7 @@ const {simulatedWidth} = Astro.props
     const wrapper = document.querySelector(".responsive-wrapper")
 
     if (!wrapper.style.getPropertyValue("--sim-width") || wrapper.style.getPropertyValue("--sim-width") === "100vw") {
-        const updateWidth = () => wrapper.style.setProperty("--sim-width", `${window.innerWidth}px`)
+        const updateWidth = () => wrapper.style.setProperty("--sim-width", "90%")
         updateWidth()
         window.addEventListener("resize", updateWidth)
     }
