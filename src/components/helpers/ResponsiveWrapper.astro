@@ -1,0 +1,30 @@
+---
+const {simulatedWidth} = Astro.props
+---
+
+<div 
+    class="responsive-wrapper"
+    style={`--sim-width: ${simulatedWidth ?? '100vw'};`}
+>
+    <slot />
+</div>
+
+<style is:global>
+    .responsive-wrapper {
+        width: var(--sim-width);
+        min-width: var(--sim-width);
+        max-width: var(--sim-width);
+        margin-left: auto;
+        margin-right: auto;
+    }
+</style>
+
+<script type="module">
+    const wrapper = document.querySelector(".responsive-wrapper")
+
+    if (!wrapper.style.getPropertyValue("--sim-width") || wrapper.style.getPropertyValue("--sim-width") === "100vw") {
+        const updateWidth = () => wrapper.style.setProperty("--sim-width", `${window.innerWidth}px`)
+        updateWidth()
+        window.addEventListener("resize", updateWidth)
+    }
+</script>
