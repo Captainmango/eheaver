@@ -8,13 +8,13 @@ export default {
 
 export const Regular = {
     args: {
-        componentRoute: "/ui/ButtonGroup"
+        componentRoute: "/ui/UIButtonGroup"
     }
 }
 
 export const SmallScreen = {
     args: {
         simulatedWidth: "400px",
-        componentRoute: "/ui/ButtonGroup"
+        componentRoute: "/ui/UIButtonGroup"
     }
 }
