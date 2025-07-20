@@ -1,4 +1,5 @@
 @use "@picocss/pico/scss/pico" with (
+    $parent-selector: ".pico",
     $theme-color: "jade",
     $enable-semantic-container: true,
     $enable-viewport: true,

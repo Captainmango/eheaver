@@ -1,15 +1,12 @@
 ---
 import "../scss/main.scss"
 import Head from "./Head.astro"
-
-const {title} = Astro.props
 ---
+
 <!doctype html>
 <html lang="en">
 	<head>
 		<Head />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
 	</head>
 	<body class="container pico">
 		<slot />
