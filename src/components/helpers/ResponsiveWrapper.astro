@@ -5,7 +5,7 @@ const {simulatedWidth, topSpacing, componentRoute} = Astro.props
 
 <div 
     class="responsive-wrapper pico"
-    style={`--sim-width: ${simulatedWidth ?? '100vw'} --top-spacing: ${topSpacing ?? 0};`}
+    style={`--sim-width: ${simulatedWidth ?? '100vw'}; --top-spacing: ${topSpacing ?? '4px'};`}
 >
     <iframe
         id="auto-sizing-iframe"
