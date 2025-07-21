@@ -1,19 +1,112 @@
+---
+import { Info, Rss } from "@lucide/astro";
+---
 
-<nav>
-    <aside>
-        <nav>
-            <ul>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Services</a></li>
-            <li><a href="#">Products</a></li>
-            </ul>
-        </nav>
-    </aside>
-</nav>
+<aside id="nav-container">
+    <nav id="sidebar">
+        <div>
+            <div class="header">
+                <img class="headshot" src="/static/profile.jpeg" />
+            </div>
+            <hgroup>
+                <h3>Edward Heaver</h3>
+                <p>Building things and solving problems</p>
+            </hgroup>
+        </div>
+        <ul>
+            <li><a href="#"><Info size="28" /><span>About</span></a></li>
+            <li><a href="#"><Rss size=28 /><span>Blog</span></a></li>
+        </ul>
+        <div>
+            <p>Social buttons here</p>
+        </div>
+    </nav>
+</aside>
 
 <style lang="scss">
-    nav {
+    #sidebar {
+        padding-top: var(--pico-spacing);
+        box-sizing: border-box;
         height: 100vh;
-        width: 400px;
+        width: 280px;
+        position: sticky;
+        inset: 0 auto 0 0;
+        align-self: start;
+        display: flex;
+        flex-flow: column;
+        justify-content: start;
+
+        & ul {
+            list-style: none;
+            display: flex;
+            flex-flow: column;
+            align-self: start;
+            flex-wrap: nowrap;
+
+            & a {
+                color: var(--pico-dark);
+                text-decoration: none;
+            }
+
+            & li {
+                display: flex;
+                align-items: center;
+                width: 280px;
+
+                & a {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                }
+
+                svg {
+                    padding-right: 8px;
+                }
+
+                & :hover {
+                    color: var(--pico-primary);
+                }
+            }
+
+            & li.active a {
+                background-color: rgba($color: var(--pico-primary), $alpha: 5.0);
+                color: var(--pico-color);
+                font-weight: bold;
+            }
+        }
+
+        & div:last-child {
+            margin-top: auto;
+        }
+    }
+
+    #header {
+        display: flex;
+        align-content: space-around;
+    }
+
+    .headshot {
+        height: 10em;
+        border-radius: 5%;
+    }
+
+    hgroup {
+        padding-top: var(--pico-spacing);
     }
 </style>
+
+<script is:inline>
+        const navLinks = document.querySelectorAll('#sidebar a');
+        
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                // e.preventDefault();
+                
+                document.querySelectorAll('#navigation li').forEach(li => {
+                    li.classList.remove('active');
+                });
+                
+                this.parentElement.classList.add('active');
+            });
+        });
+</script>
