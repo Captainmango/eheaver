@@ -54,6 +54,8 @@ export default defineConfig({
                 subpath: "/astrobook",
                 head: "./src/layouts/Head.astro"
             }),
-        excludeUiPages()
+        process.env.NODE_ENV === "production" 
+            ? excludeUiPages()
+            : []
     ]
 })
