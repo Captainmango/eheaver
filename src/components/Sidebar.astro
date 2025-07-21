@@ -1,5 +1,12 @@
 ---
 import { Info, Rss } from "@lucide/astro";
+
+const currentPage = Astro.url.pathname;
+
+const navItems = [
+    { href: "#", label: "About", icon: "Info" },
+    { href: "#", label: "Blog", icon: "Rss" },
+];
 ---
 
 <aside id="nav-container">
@@ -14,8 +21,15 @@ import { Info, Rss } from "@lucide/astro";
             </hgroup>
         </div>
         <ul>
-            <li><a href="#"><Info size="28" /><span>About</span></a></li>
-            <li><a href="#"><Rss size=28 /><span>Blog</span></a></li>
+            {navItems.map(item => (
+                <li class={currentPage === item.href || currentPage.startsWith(item.href + "/") ? "active" : ""}>
+                    <a href={item.href}>
+                        {item.icon === "Info" && <Info size="28" />}
+                        {item.icon === "Rss" && <Rss size="28" />}
+                        <span>{item.label}</span>
+                    </a>
+                </li>
+            ))}
         </ul>
         <div>
             <p>Social buttons here</p>
@@ -96,17 +110,20 @@ import { Info, Rss } from "@lucide/astro";
 </style>
 
 <script is:inline>
-        const navLinks = document.querySelectorAll('#sidebar a');
+    function initNavigation() {
+        const navLinks = document.querySelectorAll("#sidebar a");
         
         navLinks.forEach(link => {
-            link.addEventListener('click', function(e) {
-                // e.preventDefault();
-                
-                document.querySelectorAll('#navigation li').forEach(li => {
-                    li.classList.remove('active');
+            link.addEventListener("click", function(e) {
+                document.querySelectorAll("#sidebar li").forEach(li => {
+                    li.classList.remove("active");
                 });
                 
-                this.parentElement.classList.add('active');
+                this.parentElement.classList.add("active");
             });
         });
+    }
+    
+    initNavigation();
+    document.addEventListener("astro:page-load", initNavigation);
 </script>
