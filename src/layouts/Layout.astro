@@ -1,4 +1,5 @@
 ---
+import Sidebar from "../components/Sidebar.astro"
 import "../scss/main.scss"
 import Head from "./Head.astro"
 
@@ -11,7 +12,22 @@ const {title} = Astro.props
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 	</head>
-	<body class="container pico">
-		<slot />
+	<body class="pico page-grid container">
+		<Sidebar />
+		<div class="container page-content">
+			<slot />
+		</div>
 	</body>
 </html>
+
+<style lang="scss">
+	.page-grid {
+		display: grid;
+		grid-template-columns: 280px 1fr;
+		column-gap: 3rem;
+	}
+
+	.page-content {
+		padding: var(--pico-spacing);
+	}
+</style>
