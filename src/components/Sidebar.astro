@@ -17,7 +17,7 @@ const navItems = [
             </div>
             <hgroup>
                 <h3>Edward Heaver</h3>
-                <p>Building things and solving problems</p>
+                <p style="width: 20ch;">Building things and solving problems</p>
             </hgroup>
         </div>
         <ul>
@@ -31,13 +31,17 @@ const navItems = [
                 </li>
             ))}
         </ul>
-        <div>
+        <div class="socials">
             <p>Social buttons here</p>
         </div>
     </nav>
 </aside>
 
 <style lang="scss">
+    #nav-container {
+        padding-left: var(--pico-spacing);
+    }
+
     #sidebar {
         padding-top: var(--pico-spacing);
         box-sizing: border-box;
@@ -100,12 +104,16 @@ const navItems = [
     }
 
     .headshot {
-        height: 10em;
+        height: 11em;
         border-radius: 5%;
     }
 
     hgroup {
         padding-top: var(--pico-spacing);
+    }
+
+    .socials {
+        padding-bottom: var(--pico-spacing);
     }
 </style>
 
