@@ -5,11 +5,14 @@ import { Icon } from "astro-icon/components";
 <div class="grid">
     <ul class="wrapper">
         <li>
-            <span>
-                <a href="">
+            <a id="theme-toggle" href="">
+                <span class="sun-icon">
                     <Icon name="lucide:sun" size="28" />
-                </a>
-            </span>
+                </span>
+                <span class="moon-icon">
+                    <Icon name="lucide:moon" size="28" />
+                </span>
+            </a>
         </li>
         <span class="socials-boarder"></span>
         <ul class="socials">
@@ -68,4 +71,37 @@ import { Icon } from "astro-icon/components";
         height: 1.5rem;
         align-self: center;
     }
+    .sun-icon,
+    .moon-icon {
+        display: none;
+    }
+
+    :global([data-theme='dark']) .sun-icon {
+        display: inline;
+    }
+
+    :global([data-theme='light']) .moon-icon {
+        display: inline;
+    }
 </style>
+
+<script is:inline>
+    function setInitialTheme() {
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const theme = savedTheme || (prefersDark ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+    }
+
+    function toggleTheme(event) {
+        event.preventDefault()
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        
+        document.documentElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+    }
+
+    setInitialTheme()
+    document.getElementById('theme-toggle')?.addEventListener('click', toggleTheme);
+</script>
