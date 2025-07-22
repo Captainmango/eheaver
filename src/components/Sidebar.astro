@@ -1,5 +1,6 @@
 ---
-import { Info, Rss } from "@lucide/astro";
+import SocialButtons from "./SocialButtons.astro";
+import { Icon } from "astro-icon/components";
 
 const currentPage = Astro.url.pathname;
 
@@ -24,15 +25,15 @@ const navItems = [
             {navItems.map(item => (
                 <li class={currentPage === item.href || currentPage.startsWith(item.href + "/") ? "active" : ""}>
                     <a href={item.href}>
-                        {item.icon === "Info" && <Info size="28" />}
-                        {item.icon === "Rss" && <Rss size="28" />}
+                        {item.icon === "Info" && <Icon name="lucide:info" size="28" />}
+                        {item.icon === "Rss" && <Icon name="lucide:rss" size="28" />}
                         <span>{item.label}</span>
                     </a>
                 </li>
             ))}
         </ul>
         <div class="socials">
-            <p>Social buttons here</p>
+            <SocialButtons />
         </div>
     </nav>
 </aside>

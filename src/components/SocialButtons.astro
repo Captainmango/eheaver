@@ -1,0 +1,71 @@
+---
+import { Icon } from "astro-icon/components";
+---
+
+<div class="grid">
+    <ul class="wrapper">
+        <li>
+            <span>
+                <a href="">
+                    <Icon name="lucide:sun" size="28" />
+                </a>
+            </span>
+        </li>
+        <span class="socials-boarder"></span>
+        <ul class="socials">
+            <li>
+                <a href="https://github.com/Captainmango">
+                    <span>
+                        <Icon name="fa6-brands:github" size="28" />
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.linkedin.com/in/edward-heaver-9ba556a0/">
+                    <span>
+                        <Icon name="fa6-brands:linkedin-in" size="28" />
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="https://x.com/EdwardHeaver6">
+                    <span>
+                        <Icon name="fa6-brands:x-twitter" size="28" />
+                    </span>
+                </a>
+            </li>
+        </ul>
+    </ul>
+</div>
+
+<style lang="scss">
+    .wrapper {
+        list-style: none;
+        display: flex;
+        flex-direction: row;
+
+        & li {
+            list-style: none;
+            align-self: center;
+        }
+    }
+
+    .socials {
+        list-style: none;
+        display: flex;
+        flex-direction: row;
+
+        & li {
+            list-style: none;
+            align-self: center;
+        }
+    }
+
+    .socials-boarder {
+        border-right: solid 2px var(--pico-color);
+        margin-right: 0.75rem;
+        opacity: 50%;
+        height: 1.5rem;
+        align-self: center;
+    }
+</style>

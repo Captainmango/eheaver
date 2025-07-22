@@ -1,6 +1,7 @@
 // @ts-check
 import { defineConfig } from 'astro/config'
 import astrobook from "astrobook"
+import icon from "astro-icon"
 
 function excludeUiPages() {
     return {
@@ -47,6 +48,7 @@ function excludeUiPages() {
 // https://astro.build/config
 export default defineConfig({
     integrations: [
+        icon(),
         process.env.NODE_ENV === "production"
             ? []
             : astrobook({
