@@ -1,29 +1,41 @@
 ---
 import "../../scss/main.scss"
-const {simulatedWidth, topSpacing, componentRoute} = Astro.props
+import ButtonGroup from "../ButtonGroup.astro"
+const {
+    simulatedWidth,
+    topSpacing,
+    componentRoute,
+    simulatedHeight
+} = Astro.props
 ---
 
 <div 
     class="responsive-wrapper pico"
-    style={`--sim-width: ${simulatedWidth ?? '100vw'}; --top-spacing: ${topSpacing ?? 0};`}
+    style={`--sim-width: ${simulatedWidth ?? '100dvw'}; --top-spacing: ${topSpacing ?? 0}; --sim-height: ${simulatedHeight ?? `100vh`}`}
 >
     <iframe
         id="auto-sizing-iframe"
         class="inner-wrapper"
         src=`${componentRoute}`
-    ></iframe>
-    <slot />
+        srcdoc="<p>hello</p>"
+        width=`${simulatedWidth}`
+        height=`${simulatedHeight}`
+    >
+    </iframe>
+
+    <div id="content-stuff" style="display: none;">
+        <slot />
+    </div>
 </div>
 
 <style is:global>
     .responsive-wrapper {
         width: var(--sim-width);
+        height: var(--sim-height);
         min-width: var(--sim-width);
         max-width: var(--sim-width);
         margin-left: auto;
         margin-right: auto;
-        width: 100%;
-        height: 100vh;
         margin: 0;
         padding: 0;
         margin-top: var(--top-spacing);
@@ -38,7 +50,7 @@ const {simulatedWidth, topSpacing, componentRoute} = Astro.props
     }
 </style>
 
-<script type="module">
+<!-- <script type="module">
     const wrapper = document.querySelector(".responsive-wrapper")
 
     if (!wrapper.style.getPropertyValue("--sim-width") || wrapper.style.getPropertyValue("--sim-width") === "100vw") {
@@ -60,4 +72,4 @@ const {simulatedWidth, topSpacing, componentRoute} = Astro.props
         const observer = new ResizeObserver(() => resizeIframeToContent(iframe));
         observer.observe(iframe.contentWindow.document.body);
     });
-</script>
+</script> -->
