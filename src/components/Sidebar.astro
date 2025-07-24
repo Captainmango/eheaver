@@ -11,9 +11,11 @@ const navItems = [
 ---
 
 <aside id="nav-container">
-    <button id="mobile-nav-button" class="outline secondary" onclick="toggleNav()">
+    <input type="checkbox" id="nav-state" style="display:none;" tabindex="-1">
+    <label id="mobile-nav-button" for="nav-state" role="button" class="outline secondary" >
         <Icon name="lucide:menu" />
-    </button>
+    </label>
+    <label for="nav-state" id="overlay"></label>
     <nav id="sidebar" class="closed">
         <div>
             <div class="header">
@@ -21,7 +23,7 @@ const navItems = [
             </div>
             <hgroup>
                 <h3>Edward Heaver</h3>
-                <p style="width: 20ch;">Senior backend engineer</p>
+                <p style="width: 20ch;">Senior Backend Engineer</p>
             </hgroup>
         </div>
         <ul style="width: 22ch;">
@@ -142,6 +144,23 @@ const navItems = [
         }
     }
 
+    #nav-state:checked ~ #sidebar {
+        transform: translateX(0);
+    }
+
+    #overlay {
+        transition: all 0.5s ease;
+    }
+
+    #nav-state:checked ~ #overlay {
+        position: fixed;
+        backdrop-filter: blur(4px);
+        height: 100%;
+        width: 100%;
+        inset: 0 0 auto auto;
+        z-index: 998;
+    }
+
     .headshot {
         position: relative;
         height: 11em;
@@ -158,11 +177,6 @@ const navItems = [
 </style>
 
 <script is:inline>
-    function toggleNav() {
-        const navContainer = document.getElementById("sidebar")
-        navContainer.classList.toggle("closed")
-    }
-
     function initNavigation() {
         const navLinks = document.querySelectorAll("#sidebar a");
         
