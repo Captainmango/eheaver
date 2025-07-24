@@ -1,15 +1,69 @@
 ---
+import { Image } from 'astro:assets';
+import FormattedDate from "./FormattedDate.astro";
+
+const {
+    mediumLink,
+    blogImage,
+    title,
+    publishDate,
+    description
+} = Astro.props
 
 ---
 
-<article>
-    <p>Hello world</p>
-</article>
+<a href={mediumLink}>
+    <article class="card">
+        <div class="card-image">
+            {blogImage && (
+                <img src={blogImage} alt="" />
+            )}
+        </div>
+        <hgroup>
+            <h4 class="title">{title}</h4>
+            <p class="date">
+                <FormattedDate date={new Date(publishDate)} />
+            </p>
+        </hgroup>
+        <p>
+            {description}
+        </p>
+    </article>
+</a>
 
 <style lang="scss">
-    .title-card {
-        height: 11em;
-        border-radius: 5%;
-        z-index: 999;
+    a {
+        text-decoration: none;
+    }
+    .card {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: clamp(30dvh, 300px, 100%);
+        row-gap: 0.5em;
+
+        & hgroup {
+            width: 90%;
+        }
+    
+        & .card-image {
+            width: 100%;
+            height: 0;
+            padding-bottom: 75%;
+            position: relative;
+            overflow: hidden;
+
+            & img {
+                padding: 8px;
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+                object-position: center;
+            }
+        }
     }
 </style>
