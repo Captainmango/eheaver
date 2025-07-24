@@ -21,10 +21,10 @@ const navItems = [
             </div>
             <hgroup>
                 <h3>Edward Heaver</h3>
-                <p style="width: 20ch;">Building things and solving problems</p>
+                <p style="width: 20ch;">Senior backend engineer</p>
             </hgroup>
         </div>
-        <ul>
+        <ul style="width: 22ch;">
             {navItems.map(item => (
                 <li class={currentPage === item.href || currentPage.startsWith(item.href + "/") ? "active" : ""}>
                     <a href={item.href}>
@@ -73,7 +73,7 @@ const navItems = [
         padding-top: var(--pico-spacing);
         box-sizing: border-box;
         height: 100vh;
-        width: 280px;
+        width: clamp(280px, 600px, 20%);
         position: fixed;
         inset: 0 auto 0 0;
         align-self: start;
@@ -83,14 +83,14 @@ const navItems = [
         align-items: center;
         z-index: 999;
         background-color: #EFF1F4;
-        transition: all 0.5s ease-out;
+        transition: transform 0.5s ease-out;
 
         & ul {
             list-style: none;
             display: flex;
             flex-direction: column;
-            align-self: center;
-            justify-content: center;
+            justify-content: flex-start;
+            align-items: flex-start;
             flex-wrap: nowrap;
             width: 100px;
 

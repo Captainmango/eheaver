@@ -27,7 +27,7 @@ const {title} = Astro.props
 	:global(.page-grid) {
 		display: grid;
 		grid-template-rows: 20px 1fr 200px;
-		grid-template-columns: 280px 1fr;
+		grid-template-columns: clamp(280px, 600px, 20%) 1fr;
 		grid-template-areas: 
 			"sidebar header"
 			"sidebar content"
