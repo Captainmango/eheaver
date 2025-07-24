@@ -11,30 +11,26 @@ const {
 } = Astro.props
 
 ---
-
-<a href={mediumLink}>
-    <article class="card">
-        <div class="card-image">
-            {blogImage && (
-                <img src={blogImage} alt="" />
-            )}
-        </div>
-        <hgroup>
-            <h4 class="title">{title}</h4>
-            <p class="date">
-                <FormattedDate date={new Date(publishDate)} />
-            </p>
-        </hgroup>
-        <p>
-            {description}
+<article class="card">
+    <div class="card-image">
+        {blogImage && (
+            <img src={blogImage} alt="" />
+        )}
+    </div>
+    <hgroup>
+        <h5 class="title">{title}</h4>
+        <p class="date">
+            <FormattedDate date={new Date(publishDate)} />
         </p>
-    </article>
-</a>
+    </hgroup>
+    <a href={mediumLink} style="width: 90%;">Read on Medium</a>
+</article>
+
 
 <style lang="scss">
-    a {
-        text-decoration: none;
-    }
+    @use "sass:map";
+    @import "@picocss/pico/scss/settings";
+
     .card {
         display: flex;
         flex-direction: column;
@@ -44,7 +40,15 @@ const {
         row-gap: 0.5em;
 
         & hgroup {
+            & h5 {
+                font-size: 1em;
+            }
+            & p {
+                font-size: 0.8em;
+            }
             width: 90%;
+            padding: 0;
+            margin: 0;
         }
     
         & .card-image {
@@ -53,6 +57,12 @@ const {
             padding-bottom: 75%;
             position: relative;
             overflow: hidden;
+
+            @if map.get($breakpoints, "md") {
+                @media (max-width: map.get(map.get($breakpoints, "md"), "breakpoint")) {
+                    display: none;
+                }
+            }
 
             & img {
                 padding: 8px;
@@ -63,6 +73,12 @@ const {
                 height: 100%;
                 object-fit: contain;
                 object-position: center;
+            }
+        }
+
+        @if map.get($breakpoints, "md") {
+            @media (min-width: map.get(map.get($breakpoints, "md"), "breakpoint")) {
+                grid-template-columns: repeat(auto-fit, minmax(0%, 1fr));
             }
         }
     }
