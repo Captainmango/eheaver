@@ -1,26 +1,35 @@
 ---
-import { Image } from 'astro:assets';
+import { Image } from "astro:assets";
 import FormattedDate from "./FormattedDate.astro";
+import fallbackImage from "../assets/blogfallback.png"
+import { getImage } from "astro/assets";
+
+interface Props {
+    mediumLink: string
+    blogImage: string | undefined
+    title: string
+    publishDate: Date
+}
 
 const {
     mediumLink,
     blogImage,
     title,
-    publishDate,
-    description
+    publishDate
 } = Astro.props
 
 ---
 <article class="card">
     <div class="card-image">
         {blogImage && (
-            <img src={blogImage} alt="" />
+            <Image inferSize={true} src={blogImage} alt="Hero image for blogpost" />
         )}
+        {!blogImage && (<img src= {fallbackImage.src } />)}
     </div>
     <hgroup>
         <h5 class="title">{title}</h4>
         <p class="date">
-            <FormattedDate date={new Date(publishDate)} />
+            <FormattedDate date={publishDate} />
         </p>
     </hgroup>
     <a href={mediumLink} style="width: 90%;">Read on Medium</a>
@@ -83,3 +92,9 @@ const {
         }
     }
 </style>
+
+<script type="module">
+    function setfallback() {
+
+    }
+</script>

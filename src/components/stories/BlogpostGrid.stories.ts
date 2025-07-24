@@ -13,6 +13,14 @@ export const LargeScreen = {
     }
 }
 
+export const MediumScreen = {
+    args: {
+        simulatedHeight: "800px",
+        simulatedWidth: "900px",
+        componentRoute: "/ui/UIBlogpostGrid"
+    }
+}
+
 export const MobileScreen = {
     args: {
         simulatedHeight: "800px",

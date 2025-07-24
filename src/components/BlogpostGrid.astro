@@ -1,10 +1,51 @@
 ---
 import BlogpostCard from "./BlogpostCard.astro";
-import { type CollectionEntry, getCollection, render } from 'astro:content';
+import fallbackImage from "../assets/blogfallback.png"
+import { getCollection } from 'astro:content';
+import { undefined } from "astro:schema";
 
-const posts = (await getCollection("medium")).sort(
-  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
-);
+const posts = (await getCollection("medium"))
+    .sort(
+        (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+    )
+    .map(post => {
+        if (post.data.heroImage?.startsWith("https://medium.com/_")) {
+            //@ts-ignore
+            post.data.heroImage = undefined
+        }
+
+        return post.data
+    });
 
 ---
 
+<section class="container">
+    <div class="blogpost-grid">
+        {
+            posts.map(post => <BlogpostCard
+                mediumLink={post.link}
+                blogImage={post.heroImage}
+                title={post.title}
+                publishDate={post.pubDate}
+            />)
+        }
+    </div>
+</section>
+
+<style lang="scss">
+    @use "sass:map";
+    @import "@picocss/pico/scss/settings";
+
+    .blogpost-grid {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: var(--pico-spacing);
+
+        @if map.get($breakpoints, "md") {
+            @media (max-width: map.get(map.get($breakpoints, "md"), "breakpoint")) {
+                    gap: var(--pico-spacing) / 3;
+            }
+        }
+    }
+</style>
