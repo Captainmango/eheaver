@@ -26,7 +26,7 @@ const {title} = Astro.props
 
 	:global(.page-grid) {
 		display: grid;
-		grid-template-rows: 20px 1fr 200px;
+		grid-template-rows: 20px calc(max(100dvh, 100%) - 200px) 200px;
 		grid-template-columns: clamp(280px, 600px, 20%) 1fr;
 		grid-template-areas: 
 			"sidebar header"
@@ -36,7 +36,6 @@ const {title} = Astro.props
 
 		@if map.get($breakpoints, "lg") {
             @media (max-width: map.get(map.get($breakpoints, "lg"), "breakpoint")) {
-				grid-template-rows: 20px 1fr 200px;
 				grid-template-columns: 1fr;
 				grid-template-areas: 
 					"header"
