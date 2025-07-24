@@ -1,0 +1,10 @@
+---
+import BlogpostCard from "./BlogpostCard.astro";
+import { type CollectionEntry, getCollection, render } from 'astro:content';
+
+const posts = (await getCollection("medium")).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+
+---
+
