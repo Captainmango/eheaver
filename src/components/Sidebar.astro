@@ -11,7 +11,10 @@ const navItems = [
 ---
 
 <aside id="nav-container">
-    <nav id="sidebar">
+    <button id="mobile-nav-button" class="outline secondary" onclick="toggleNav()">
+        <Icon name="lucide:menu" />
+    </button>
+    <nav id="sidebar" class="closed">
         <div>
             <div class="header">
                 <img class="headshot" src="/static/profile.jpeg" />
@@ -39,9 +42,31 @@ const navItems = [
 </aside>
 
 <style lang="scss">
+    @use "sass:map";
+    @import "@picocss/pico/scss/settings";
+
     #nav-container {
+        position: relative;
         grid-area: "sidebar";
         padding-left: var(--pico-spacing);
+    }
+
+    #mobile-nav-button {
+        position: absolute;
+        top: var(--pico-spacing);
+        right: 0;
+        margin-right: var(--pico-spacing);
+        display: none;
+
+        @if map.get($breakpoints, "lg") {
+            @media (max-width: map.get(map.get($breakpoints, "lg"), "breakpoint")) {
+                display: block;
+            }
+        }
+    }
+
+    :global([data-theme='dark']) #sidebar {
+        background-color: #181C25;
     }
 
     #sidebar {
@@ -50,18 +75,24 @@ const navItems = [
         height: 100vh;
         width: 280px;
         position: fixed;
-        inset: 20 auto 0 0;
+        inset: 0 auto 0 0;
         align-self: start;
         display: flex;
-        flex-flow: column;
-        justify-content: start;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 999;
+        background-color: #EFF1F4;
+        transition: all 0.5s ease-out;
 
         & ul {
             list-style: none;
             display: flex;
-            flex-flow: column;
-            align-self: start;
+            flex-direction: column;
+            align-self: center;
+            justify-content: center;
             flex-wrap: nowrap;
+            width: 100px;
 
             & a {
                 color: var(--pico-dark);
@@ -71,7 +102,7 @@ const navItems = [
             & li {
                 display: flex;
                 align-items: center;
-                width: 280px;
+                width: 100px;
 
                 & a {
                     display: flex;
@@ -105,7 +136,14 @@ const navItems = [
         align-content: space-around;
     }
 
+    .closed {
+        @media (max-width: map.get(map.get($breakpoints, "lg"), "breakpoint")) {
+            transform: translateX(-200%);
+        }
+    }
+
     .headshot {
+        position: relative;
         height: 11em;
         border-radius: 5%;
     }
@@ -120,6 +158,11 @@ const navItems = [
 </style>
 
 <script is:inline>
+    function toggleNav() {
+        const navContainer = document.getElementById("sidebar")
+        navContainer.classList.toggle("closed")
+    }
+
     function initNavigation() {
         const navLinks = document.querySelectorAll("#sidebar a");
         

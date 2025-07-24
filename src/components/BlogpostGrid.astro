@@ -46,7 +46,7 @@ const posts = (await getCollection("medium"))
 
         @if map.get($breakpoints, "md") {
             @media (max-width: map.get(map.get($breakpoints, "md"), "breakpoint")) {
-                    gap: var(--pico-spacing) / 3;
+                    gap: var(--pico-spacing);
             }
         }
     }

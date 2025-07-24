@@ -2,7 +2,7 @@
 import { Icon } from "astro-icon/components";
 ---
 
-<div class="grid">
+<div>
     <ul class="wrapper">
         <li>
             <a id="theme-toggle" href="">
@@ -43,6 +43,7 @@ import { Icon } from "astro-icon/components";
 
 <style lang="scss">
     .wrapper {
+        position: relative;
         list-style: none;
         display: flex;
         flex-direction: row;
@@ -59,15 +60,18 @@ import { Icon } from "astro-icon/components";
         flex-direction: row;
 
         & li {
+            margin: 0;
+            padding: 6px;
             list-style: none;
             align-self: center;
         }
     }
 
     .socials-boarder {
+        z-index: 999;
         border-right: solid 2px var(--pico-color);
         margin-right: 0.75rem;
-        opacity: 50%;
+        opacity: 60%;
         height: 1.5rem;
         align-self: center;
     }
