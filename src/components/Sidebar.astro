@@ -40,6 +40,7 @@ const navItems = [
 
 <style lang="scss">
     #nav-container {
+        grid-area: "sidebar";
         padding-left: var(--pico-spacing);
     }
 
@@ -48,8 +49,8 @@ const navItems = [
         box-sizing: border-box;
         height: 100vh;
         width: 280px;
-        position: sticky;
-        inset: 0 auto 0 0;
+        position: fixed;
+        inset: 20 auto 0 0;
         align-self: start;
         display: flex;
         flex-flow: column;

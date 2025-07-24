@@ -21,14 +21,21 @@ const {title} = Astro.props
 </html>
 
 <style lang="scss">
-	.page-grid {
+	:global(.page-grid) {
 		display: grid;
+		grid-template-rows: 20px 1fr 200px;
 		grid-template-columns: 280px 1fr;
+		grid-template-areas: 
+			"sidebar header"
+			"sidebar content"
+			"sidebar footer";
 		column-gap: 3rem;
 	}
 
 	.page-content {
+		grid-area: content;
 		padding: var(--pico-spacing);
+		overflow: auto;
 	}
 </style>
 

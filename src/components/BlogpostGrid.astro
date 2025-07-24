@@ -40,6 +40,8 @@ const posts = (await getCollection("medium"))
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
+        justify-content: center;
+        align-items: flex-start;
         gap: var(--pico-spacing);
 
         @if map.get($breakpoints, "md") {

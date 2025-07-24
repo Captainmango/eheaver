@@ -1,11 +1,15 @@
 ---
+import BlogpostGrid from "../components/BlogpostGrid.astro"
 import Layout from "../layouts/Layout.astro"
 ---
 
 <Layout title="Blogposts">
     <div class="container">
-        <h1>
-            Goodbye mars
-        </h1>
+        <hgroup>
+            <h2>Blogposts</h2>
+            <p>Read about topics I find interesting on Medium</p>
+        </hgroup>
+
+        <BlogpostGrid />
     </div>
 </Layout>
