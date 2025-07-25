@@ -1,7 +1,6 @@
 ---
 import BlogpostCard from "./BlogpostCard.astro";
 import { getCollection } from 'astro:content';
-import { undefined } from "astro:schema";
 
 const posts = (await getCollection("medium"))
     .sort(
