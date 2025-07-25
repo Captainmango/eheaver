@@ -13,7 +13,9 @@ const navItems = [
 <aside id="nav-container">
     <input type="checkbox" id="nav-state" style="display:none;" tabindex="-1">
     <label id="mobile-nav-button" for="nav-state" role="button" class="outline secondary" >
-        <Icon name="lucide:menu" />
+        <b>
+            <Icon name="lucide:menu" />
+        </b>
     </label>
     <label for="nav-state" id="overlay"></label>
     <nav id="sidebar" class="closed">
@@ -59,10 +61,8 @@ const navItems = [
         margin-right: var(--pico-spacing);
         display: none;
 
-        @if map.get($breakpoints, "lg") {
-            @media (max-width: map.get(map.get($breakpoints, "lg"), "breakpoint")) {
-                display: block;
-            }
+        @media (max-width: map.get(map.get($breakpoints, "lg"), "breakpoint")) {
+            display: block;
         }
     }
 
@@ -74,7 +74,7 @@ const navItems = [
         padding-top: var(--pico-spacing);
         box-sizing: border-box;
         height: 100vh;
-        width: clamp(280px, 600px, 20%);
+        width: clamp(280px, 400px, 17%);
         position: fixed;
         inset: 0 auto 0 0;
         align-self: start;
@@ -171,7 +171,11 @@ const navItems = [
     }
 
     .socials {
-        padding-bottom: var(--pico-spacing);
+        padding-bottom: 1rem;
+
+        @media (max-width: map.get(map.get($breakpoints, "lg"), "breakpoint")) {
+            padding-bottom: 2rem;
+        }
     }
 </style>
 

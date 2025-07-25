@@ -2,7 +2,6 @@
 import { Image } from "astro:assets";
 import FormattedDate from "./FormattedDate.astro";
 import fallbackImage from "../assets/blogfallback.png"
-import { getImage } from "astro/assets";
 
 interface Props {
     mediumLink: string
@@ -92,9 +91,3 @@ const {
         }
     }
 </style>
-
-<script type="module">
-    function setfallback() {
-
-    }
-</script>

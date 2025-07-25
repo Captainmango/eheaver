@@ -1,6 +1,5 @@
 ---
 import BlogpostCard from "./BlogpostCard.astro";
-import fallbackImage from "../assets/blogfallback.png"
 import { getCollection } from 'astro:content';
 import { undefined } from "astro:schema";
 
@@ -44,10 +43,8 @@ const posts = (await getCollection("medium"))
         align-items: flex-start;
         gap: var(--pico-spacing);
 
-        @if map.get($breakpoints, "md") {
-            @media (max-width: map.get(map.get($breakpoints, "md"), "breakpoint")) {
-                    gap: var(--pico-spacing);
-            }
+        @media (max-width: map.get(map.get($breakpoints, "md"), "breakpoint")) {
+                gap: var(--pico-spacing);
         }
     }
 </style>
