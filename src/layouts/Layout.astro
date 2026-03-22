@@ -26,7 +26,7 @@ const {title} = Astro.props
 
 <style lang="scss">
 	@use "sass:map";
-	@import "@picocss/pico/scss/settings";
+	@use "@picocss/pico/scss/settings";
 
 	:global(.page-grid) {
 		display: grid;
@@ -37,13 +37,15 @@ const {title} = Astro.props
 			"sidebar content"
 			"sidebar footer";
 		column-gap: 3rem;
-		@media (max-width: map.get(map.get($breakpoints, "lg"), "breakpoint")) {
-			grid-template-columns: 1fr;
-			grid-template-areas: 
-				"header"
-				"content"
-				"footer";
-			column-gap: 3rem;
+		@if map.get(settings.$breakpoints, "md") {
+			@media (max-width: map.get(map.get(settings.$breakpoints, "lg"), "breakpoint")) {
+				grid-template-columns: 1fr;
+				grid-template-areas: 
+					"header"
+					"content"
+					"footer";
+				column-gap: 3rem;
+			}
 		}
 	}
 

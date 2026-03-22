@@ -46,7 +46,7 @@ const navItems = [
 
 <style lang="scss">
     @use "sass:map";
-    @import "@picocss/pico/scss/settings";
+    @use "@picocss/pico/scss/settings";
 
     #nav-container {
         position: relative;
@@ -61,7 +61,7 @@ const navItems = [
         margin-right: var(--pico-spacing);
         display: none;
 
-        @media (max-width: map.get(map.get($breakpoints, "lg"), "breakpoint")) {
+        @media (max-width: map.get(map.get(settings.$breakpoints, "lg"), "breakpoint")) {
             display: block;
         }
     }
@@ -138,7 +138,7 @@ const navItems = [
     }
 
     .closed {
-        @media (max-width: map.get(map.get($breakpoints, "lg"), "breakpoint")) {
+        @media (max-width: map.get(map.get(settings.$breakpoints, "lg"), "breakpoint")) {
             transform: translateX(-200%);
         }
     }
@@ -173,7 +173,7 @@ const navItems = [
     .socials {
         padding-bottom: 1rem;
 
-        @media (max-width: map.get(map.get($breakpoints, "lg"), "breakpoint")) {
+        @media (max-width: map.get(map.get(settings.$breakpoints, "lg"), "breakpoint")) {
             padding-bottom: 2rem;
         }
     }
