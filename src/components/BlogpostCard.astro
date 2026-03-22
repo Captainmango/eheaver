@@ -21,9 +21,9 @@ const {
 <article class="card">
     <div class="card-image">
         {blogImage && (
-            <Image inferSize={true} src={blogImage} alt="Hero image for blogpost" />
+            <img src={blogImage} alt="Hero image for blogpost" />
         )}
-        {!blogImage && (<img src= {fallbackImage.src } />)}
+        {!blogImage && (<img src={fallbackImage.src} />)}
     </div>
     <hgroup>
         <h5 class="title">{title}</h4>
@@ -37,12 +37,12 @@ const {
 
 <style lang="scss">
     @use "sass:map";
-    @import "@picocss/pico/scss/settings";
+    @use "@picocss/pico/scss/settings";
 
     .card {
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
         width: clamp(150px, 390px, 450px);
         row-gap: 0.5em;
@@ -57,6 +57,7 @@ const {
             width: 90%;
             padding: 0;
             margin: 0;
+            flex-grow: 1;
         }
     
         & .card-image {
@@ -66,8 +67,8 @@ const {
             position: relative;
             overflow: hidden;
 
-            @if map.get($breakpoints, "md") {
-                @media (max-width: map.get(map.get($breakpoints, "md"), "breakpoint")) {
+            @if map.get(settings.$breakpoints, "md") {
+                @media (max-width: map.get(map.get(settings.$breakpoints, "md"), "breakpoint")) {
                     display: none;
                 }
             }
@@ -84,8 +85,8 @@ const {
             }
         }
 
-        @if map.get($breakpoints, "md") {
-            @media (min-width: map.get(map.get($breakpoints, "md"), "breakpoint")) {
+        @if map.get(settings.$breakpoints, "md") {
+            @media (min-width: map.get(map.get(settings.$breakpoints, "md"), "breakpoint")) {
                 grid-template-columns: repeat(auto-fit, minmax(0%, 1fr));
             }
         }

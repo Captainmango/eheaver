@@ -32,18 +32,20 @@ const posts = (await getCollection("medium"))
 
 <style lang="scss">
     @use "sass:map";
-    @import "@picocss/pico/scss/settings";
+    @use "@picocss/pico/scss/settings";
 
     .blogpost-grid {
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
         justify-content: center;
-        align-items: flex-start;
+        align-items: stretch;
         gap: var(--pico-spacing);
 
-        @media (max-width: map.get(map.get($breakpoints, "md"), "breakpoint")) {
+        @if map.get(settings.$breakpoints, "md") {
+            @media (max-width: map.get(map.get(settings.$breakpoints, "md"), "breakpoint")) {
                 gap: var(--pico-spacing);
+            }
         }
     }
 </style>

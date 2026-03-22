@@ -59,5 +59,13 @@ export default defineConfig({
         process.env.NODE_ENV === "production" 
             ? excludeUiPages()
             : []
-    ]
+    ],
+    image: {
+        remotePatterns: [
+            {
+                protocol: "https",
+                hostname: "**.medium.com"
+            }
+        ]
+    }
 })
