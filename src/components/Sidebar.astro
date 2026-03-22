@@ -1,6 +1,7 @@
 ---
 import SocialButtons from "./SocialButtons.astro";
 import { Icon } from "astro-icon/components";
+import { Image } from "astro:assets";
 
 const currentPage = Astro.url.pathname;
 
@@ -21,7 +22,7 @@ const navItems = [
     <nav id="sidebar" class="closed">
         <div>
             <div class="header">
-                <img class="headshot" src="/static/profile.jpeg" />
+                <Image class="headshot" src="/static/profile.jpeg" alt="Edward Heaver headshot" width={250} height={250} loading="eager" decoding="async" />
             </div>
             <hgroup>
                 <h3>Edward Heaver</h3>
@@ -70,11 +71,15 @@ const navItems = [
         background-color: #181C25;
     }
 
+    :global([data-theme='dark']) .header {
+        background-color: #2a2f3a;
+    }
+
     #sidebar {
         padding-top: var(--pico-spacing);
         box-sizing: border-box;
         height: 100vh;
-        width: clamp(280px, 400px, 17%);
+        width: clamp(280px, 300px, 17%);
         position: fixed;
         inset: 0 auto 0 0;
         align-self: start;
@@ -160,10 +165,20 @@ const navItems = [
         z-index: 998;
     }
 
-    .headshot {
-        position: relative;
-        height: 11em;
+    .header {
+        width: clamp(180px, 18vw, 250px);
+        height: clamp(180px, 18vw, 250px);
+        flex-shrink: 0;
+        background-color: #e0e0e0;
         border-radius: 5%;
+        overflow: hidden;
+    }
+
+    :global(.headshot) {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+        display: block !important;
     }
 
     hgroup {
