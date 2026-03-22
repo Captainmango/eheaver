@@ -32,7 +32,7 @@ const navItems = [
         <ul style="width: 22ch;">
             {navItems.map(item => (
                 <li class={currentPage === item.href || currentPage.startsWith(item.href + "/") ? "active" : ""}>
-                    <a href={item.href}>
+                    <a href={item.href} data-nav-link>
                         <Icon name={item.icon} size="28" />
                         <span>{item.label}</span>
                     </a>
@@ -200,7 +200,7 @@ const navItems = [
         
         navLinks.forEach(link => {
             link.addEventListener("click", function(e) {
-                document.querySelectorAll("#sidebar li").forEach(li => {
+                document.querySelectorAll("[data-nav-link]").forEach(li => {
                     li.classList.remove("active");
                 });
                 
