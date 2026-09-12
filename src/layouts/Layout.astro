@@ -21,9 +21,44 @@ const optimisedHeadshot = await getImage({
     <Head />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    <script is:inline>
+      function getThemePreference() {
+        if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+          return localStorage.getItem('theme');
+        }
+
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+
+      function updateTheme() {
+        const theme = getThemePreference();
+        document.documentElement.setAttribute('data-theme', theme);
+        if (typeof localStorage !== 'undefined') {
+          localStorage.setItem('theme', theme);
+        }
+      }
+
+      updateTheme();
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateTheme);
+
+      document.addEventListener('DOMContentLoaded', () => {
+        const themeToggle = document.getElementById('theme-toggle');
+        if (themeToggle) {
+          themeToggle.addEventListener('click', (event) => {
+            event.preventDefault();
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            if (typeof localStorage !== 'undefined') {
+              localStorage.setItem('theme', newTheme);
+            }
+          });
+        }
+      });
+    </script>
   </head>
   <body class="pico page-grid">
-    <Sidebar currentPage={Astro.url.pathname} headshotSrc={optimisedHeadshot.src} client:load />
+    <Sidebar currentPage={Astro.url.pathname} headshotSrc={optimisedHeadshot.src} />
     <div class="container page-content">
       <slot />
     </div>
@@ -68,24 +103,3 @@ const optimisedHeadshot = await getImage({
     grid-area: footer;
   }
 </style>
-
-<script is:inline>
-  function getThemePreference() {
-    if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
-      return localStorage.getItem('theme');
-    }
-
-    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-  }
-
-  function updateTheme() {
-    const theme = getThemePreference();
-    document.documentElement.setAttribute('data-theme', theme);
-    if (typeof localStorage !== 'undefined') {
-      localStorage.setItem('theme', theme);
-    }
-  }
-
-  updateTheme();
-  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateTheme);
-</script>

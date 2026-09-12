@@ -1,5 +1,5 @@
 <script lang="ts">
-  import Icon from '@iconify/svelte';
+  import InlineIcon from './InlineIcon.svelte';
 
   function toggleTheme(event: MouseEvent) {
     event.preventDefault();
@@ -14,15 +14,15 @@
   <ul class="wrapper">
     <li>
       <a id="theme-toggle" href="/" onclick={toggleTheme}>
-        <span class="sun-icon"><Icon icon="lucide:sun" width="28" /></span>
-        <span class="moon-icon"><Icon icon="lucide:moon" width="28" /></span>
+        <span class="sun-icon"><InlineIcon icon="lucide:sun" width={28} /></span>
+        <span class="moon-icon"><InlineIcon icon="lucide:moon" width={28} /></span>
       </a>
     </li>
     <span class="socials-boarder"></span>
     <ul class="socials">
-      <li><a href="https://github.com/Captainmango" target="_blank"><Icon icon="fa6-brands:github" width="28" /></a></li>
-      <li><a href="https://www.linkedin.com/in/edward-heaver-9ba556a0/" target="_blank"><Icon icon="fa6-brands:linkedin-in" width="28" /></a></li>
-      <li><a href="https://x.com/EdwardHeaver6" target="_blank"><Icon icon="fa6-brands:x-twitter" width="28" /></a></li>
+      <li><a href="https://github.com/Captainmango" target="_blank"><InlineIcon icon="fa6-brands:github" width={28} /></a></li>
+      <li><a href="https://www.linkedin.com/in/edward-heaver-9ba556a0/" target="_blank"><InlineIcon icon="fa6-brands:linkedin-in" width={28} /></a></li>
+      <li><a href="https://x.com/EdwardHeaver6" target="_blank"><InlineIcon icon="fa6-brands:x-twitter" width={28} /></a></li>
     </ul>
   </ul>
 </div>

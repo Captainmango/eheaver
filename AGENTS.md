@@ -58,9 +58,15 @@ A compact guide for working on this Astro personal site.
 
 ## Icons
 
-- Components use `@iconify/svelte` for icons.
+- Components use a local `InlineIcon.svelte` component that renders inline SVGs from `src/lib/icons.ts` to avoid async icon-loading CLS.
 - The old `astro-icon` integration and package have been removed.
-- Installed `@iconify-json/*` icon sets (`lucide`, `fa6-brands`) are available for offline resolution.
+- Installed `@iconify-json/*` icon sets (`lucide`, `fa6-brands`) are available for offline resolution; `@iconify/svelte` is still used by Storybook to register collections.
+
+## Sidebar & theme
+
+- `Layout.astro` renders the `Sidebar` Svelte component without a `client:` directive so it stays static HTML.
+- Theme switching is handled by an inline script in `<head>` that sets `data-theme` before first paint and attaches a click listener to `#theme-toggle`.
+- The mobile navigation toggle uses a CSS checkbox hack and needs no JavaScript.
 
 ## Build gotchas
 

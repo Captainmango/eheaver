@@ -1,5 +1,5 @@
 <script lang="ts">
-  import Icon from '@iconify/svelte';
+  import InlineIcon from './InlineIcon.svelte';
   import SocialButtons from './SocialButtons.svelte';
 
   interface Props {
@@ -23,7 +23,7 @@
   <input type="checkbox" id="nav-state" style="display:none;" tabindex="-1" />
   <!-- svelte-ignore a11y_no_noninteractive_element_to_interactive_role -->
   <label id="mobile-nav-button" for="nav-state" role="button" class="outline secondary" aria-label="Toggle navigation">
-    <b><Icon icon="lucide:menu" width="28" /></b>
+    <b><InlineIcon icon="lucide:menu" width={28} /></b>
   </label>
   <label for="nav-state" id="overlay"></label>
   <nav id="sidebar" class="closed">
@@ -40,7 +40,7 @@
       {#each navItems as item}
         <li class={isActive(item) ? 'active' : ''}>
           <a href={item.href} data-nav-link>
-            <Icon icon={item.icon} width="28" />
+            <InlineIcon icon={item.icon} width={28} />
             <span>{item.label}</span>
           </a>
         </li>
