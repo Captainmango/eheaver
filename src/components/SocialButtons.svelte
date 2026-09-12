@@ -10,35 +10,29 @@
   }
 </script>
 
-<div>
-  <ul class="wrapper">
-    <li>
-      <a id="theme-toggle" href="/" onclick={toggleTheme}>
-        <span class="sun-icon"><InlineIcon icon="lucide:sun" width={28} /></span>
-        <span class="moon-icon"><InlineIcon icon="lucide:moon" width={28} /></span>
-      </a>
-    </li>
-    <span class="socials-boarder"></span>
-    <ul class="socials">
-      <li><a href="https://github.com/Captainmango" target="_blank"><InlineIcon icon="fa6-brands:github" width={28} /></a></li>
-      <li><a href="https://www.linkedin.com/in/edward-heaver-9ba556a0/" target="_blank"><InlineIcon icon="fa6-brands:linkedin-in" width={28} /></a></li>
-      <li><a href="https://x.com/EdwardHeaver6" target="_blank"><InlineIcon icon="fa6-brands:x-twitter" width={28} /></a></li>
-    </ul>
+<div class="wrapper">
+  <a id="theme-toggle" href="/" onclick={toggleTheme}>
+    <span class="sun-icon"><InlineIcon icon="lucide:sun" width={28} /></span>
+    <span class="moon-icon"><InlineIcon icon="lucide:moon" width={28} /></span>
+  </a>
+  <span class="socials-boarder"></span>
+  <ul class="socials">
+    <li><a href="https://github.com/Captainmango" target="_blank"><InlineIcon icon="fa6-brands:github" width={28} /></a></li>
+    <li><a href="https://www.linkedin.com/in/edward-heaver-9ba556a0/" target="_blank"><InlineIcon icon="fa6-brands:linkedin-in" width={28} /></a></li>
+    <li><a href="https://x.com/EdwardHeaver6" target="_blank"><InlineIcon icon="fa6-brands:x-twitter" width={28} /></a></li>
   </ul>
 </div>
 
 <style lang="scss">
   .wrapper {
     position: relative;
-    list-style: none;
     display: flex;
     flex-direction: row;
     align-items: flex-start;
     justify-content: flex-start;
     width: 22ch;
 
-    & li {
-      list-style: none;
+    & > a {
       align-self: center;
     }
   }
@@ -60,6 +54,7 @@
     z-index: 999;
     border-right: solid 2px var(--pico-color);
     margin-right: 0.75rem;
+    margin-left: 0.75rem;
     opacity: 60%;
     height: 1.5rem;
     align-self: center;
