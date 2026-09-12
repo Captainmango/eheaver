@@ -23,7 +23,7 @@ const optimisedHeadshot = await getImage({
     <title>{title}</title>
   </head>
   <body class="pico page-grid">
-    <Sidebar currentPage={Astro.url.pathname} headshotSrc={optimisedHeadshot.src} />
+    <Sidebar currentPage={Astro.url.pathname} headshotSrc={optimisedHeadshot.src} client:load />
     <div class="container page-content">
       <slot />
     </div>

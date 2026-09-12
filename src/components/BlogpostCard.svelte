@@ -1,6 +1,6 @@
 <script lang="ts">
   import FormattedDate from './FormattedDate.svelte';
-  import fallbackImage from '../assets/blogfallback.png';
+  import fallbackImage from '../assets/blogfallback.png?url';
 
   interface Props {
     mediumLink: string;
