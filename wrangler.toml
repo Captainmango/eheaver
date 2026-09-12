@@ -5,3 +5,7 @@ assets = { directory = "./dist" }
 [[routes]]
 pattern = "eheaver.cloud"
 custom_domain = true
+
+[[routes]]
+pattern = "www.eheaver.cloud"
+custom_domain = true
