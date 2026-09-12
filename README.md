@@ -25,15 +25,4 @@ Running `pnpm storybook` will start the Storybook dev server at `http://localhos
 
 ## Deployment
 
-The project is deployed using [Surge](https://surge.sh/). Make sure it's installed
-
-`pnpm install --global surge`
-
-Then deployment is as simple as running the Astro build command, then the Surge deploy command.
-
-```sh
-pnpm build
-surge ./dist eheaver.cloud
-```
-
-The site will then be live at the domain provided.
+The project is deployed automatically on every push to GitHub using [Cloudflare Workers](https://workers.cloudflare.com/) and [Wrangler](https://developers.cloudflare.com/workers/wrangler/). No manual build or deploy steps are required—just push your changes and the site will be live shortly after.
