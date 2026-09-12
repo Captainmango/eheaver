@@ -77,6 +77,7 @@ A compact guide for working on this Astro personal site.
 ## Deployment
 
 - README documents Surge deploy: `pnpm build && surge ./dist eheaver.cloud`.
+- Cloudflare Pages: `wrangler.toml` at the repo root supplies the project name, compatibility date, and build output directory for Git-connected builds.
 
 ## TypeScript
 
