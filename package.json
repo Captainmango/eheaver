@@ -6,16 +6,31 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "dependencies": {
+    "@astrojs/svelte": "^9.0.1",
     "@iconify-json/fa6-brands": "^1.2.5",
     "@iconify-json/lucide": "^1.2.57",
     "@picocss/pico": "^2.1.1",
     "@ykocaman/astro-medium-loader": "^0.2.4-2",
     "astro": "^6.0.8",
-    "astro-icon": "^1.1.5",
-    "astrobook": "^0.8.4",
-    "sass": "^1.89.2"
+    "sass": "^1.89.2",
+    "svelte": "^5.57.0",
+    "typescript": "^6.0.3"
+  },
+  "devDependencies": {
+    "@iconify/svelte": "^5.2.2",
+    "@storybook/addon-essentials": "8.6.18",
+    "@storybook/addon-interactions": "8.6.18",
+    "@storybook/blocks": "8.6.18",
+    "@storybook/svelte": "8.6.18",
+    "@storybook/svelte-vite": "8.6.18",
+    "@storybook/test": "8.6.18",
+    "@sveltejs/vite-plugin-svelte": "^7.3.0",
+    "sharp": "^0.35.4",
+    "storybook": "8.6.18"
   }
 }

@@ -1,21 +1,31 @@
 ---
-import BlogpostGrid from "../components/BlogpostGrid.astro"
-import Layout from "../layouts/Layout.astro"
+import BlogpostGrid from "../components/BlogpostGrid.svelte";
+import Layout from "../layouts/Layout.astro";
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection("medium"))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .map(post => {
+    if (post.data.heroImage?.startsWith("https://medium.com/_")) {
+      post.data.heroImage = undefined;
+    }
+    return post.data;
+  });
 ---
 
 <Layout title="Blogposts">
-    <div class="container">
-        <hgroup>
-            <h2>Blogposts</h2>
-            <p>Read about topics I find interesting on Medium</p>
-        </hgroup>
+  <div class="container">
+    <hgroup>
+      <h2>Blogposts</h2>
+      <p>Read about topics I find interesting on Medium</p>
+    </hgroup>
 
-        <BlogpostGrid />
-    </div>
+    <BlogpostGrid posts={posts} />
+  </div>
 </Layout>
 
 <style>
-    hgroup {
-        padding-bottom: var(--pico-spacing);
-    }
+  hgroup {
+    padding-bottom: var(--pico-spacing);
+  }
 </style>

@@ -1,82 +1,91 @@
 ---
-import Footer from "../components/Footer.astro"
-import Sidebar from "../components/Sidebar.astro"
-import "../scss/main.scss"
-import Head from "./Head.astro"
+import Footer from "../components/Footer.svelte";
+import Sidebar from "../components/Sidebar.svelte";
+import "../scss/main.scss";
+import Head from "./Head.astro";
+import { getImage } from "astro:assets";
+import headshotSrc from "../assets/profile.jpeg";
 
-const {title} = Astro.props
+const { title } = Astro.props;
+
+const optimisedHeadshot = await getImage({
+  src: headshotSrc,
+  width: 250,
+  height: 250,
+  format: "webp",
+});
 ---
 <!doctype html>
 <html lang="en">
-	<head>
-		<Head />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-	</head>
-	<body class="pico page-grid">
-		<Sidebar />
-		<div class="container page-content">
-			<slot />
-		</div>
-	</body>
-	<footer class="page-footer">
-		<Footer />
-	</footer>
+  <head>
+    <Head />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body class="pico page-grid">
+    <Sidebar currentPage={Astro.url.pathname} headshotSrc={optimisedHeadshot.src} />
+    <div class="container page-content">
+      <slot />
+    </div>
+  </body>
+  <footer class="page-footer">
+    <Footer />
+  </footer>
 </html>
 
 <style lang="scss">
-	@use "sass:map";
-	@use "@picocss/pico/scss/settings";
+  @use "sass:map";
+  @use "@picocss/pico/scss/settings";
 
-	:global(.page-grid) {
-		display: grid;
-		grid-template-rows: 20px calc(max(90dvh, 100%) - 200px) 200px;
-		grid-template-columns: clamp(280px, 600px, 20%) 1fr;
-		grid-template-areas: 
-			"sidebar header"
-			"sidebar content"
-			"sidebar footer";
-		column-gap: 3rem;
-		@if map.get(settings.$breakpoints, "md") {
-			@media (max-width: map.get(map.get(settings.$breakpoints, "lg"), "breakpoint")) {
-				grid-template-columns: 1fr;
-				grid-template-areas: 
-					"header"
-					"content"
-					"footer";
-				column-gap: 3rem;
-			}
-		}
-	}
+  :global(.page-grid) {
+    display: grid;
+    grid-template-rows: 20px calc(max(90dvh, 100%) - 200px) 200px;
+    grid-template-columns: clamp(280px, 600px, 20%) 1fr;
+    grid-template-areas:
+      "sidebar header"
+      "sidebar content"
+      "sidebar footer";
+    column-gap: 3rem;
+    @if map.get(settings.$breakpoints, "md") {
+      @media (max-width: map.get(map.get(settings.$breakpoints, "lg"), "breakpoint")) {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+          "header"
+          "content"
+          "footer";
+        column-gap: 3rem;
+      }
+    }
+  }
 
-	.page-content {
-		grid-area: content;
-		padding: var(--pico-spacing);
-		overflow: auto;
-	}
+  .page-content {
+    grid-area: content;
+    padding: var(--pico-spacing);
+    overflow: auto;
+  }
 
-	.page-footer {
-		grid-area: footer;
-	}
+  .page-footer {
+    grid-area: footer;
+  }
 </style>
 
 <script is:inline>
-	function getThemePreference() {
-		if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
-			return localStorage.getItem('theme');
-		}
+  function getThemePreference() {
+    if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+      return localStorage.getItem('theme');
+    }
 
-		return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-	}
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  }
 
-	function updateTheme() {
-		const theme = getThemePreference();
-		document.documentElement.setAttribute('data-theme', theme);
-		if (typeof localStorage !== 'undefined') {
-			localStorage.setItem('theme', theme);
-		}
-	}
+  function updateTheme() {
+    const theme = getThemePreference();
+    document.documentElement.setAttribute('data-theme', theme);
+    if (typeof localStorage !== 'undefined') {
+      localStorage.setItem('theme', theme);
+    }
+  }
 
-	updateTheme();
-	window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateTheme);
+  updateTheme();
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateTheme);
 </script>
