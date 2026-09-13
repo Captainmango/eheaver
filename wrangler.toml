@@ -2,6 +2,13 @@ name = "eheaver"
 compatibility_date = "2026-09-12"
 assets = { directory = "./dist" }
 
+# Enable Cloudflare Workers Logs (applies to Pages Functions / Worker invocations).
+# Copied from the Cloudflare dashboard after enabling observability manually.
+[observability.logs]
+enabled = true
+invocation_logs = true
+persist = true
+
 [[routes]]
 pattern = "eheaver.cloud"
 custom_domain = true
