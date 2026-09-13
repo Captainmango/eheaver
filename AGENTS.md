@@ -58,9 +58,9 @@ A compact guide for working on this Astro personal site.
 
 ## Icons
 
-- Components use a local `InlineIcon.svelte` component that renders inline SVGs from `src/lib/icons.ts` to avoid async icon-loading CLS.
+- Components use a local `InlineIcon.svelte` component that renders inline SVGs using `@iconify/utils` and the installed `@iconify-json/*` icon sets (`lucide`, `fa6-brands`) to avoid async icon-loading CLS.
 - The old `astro-icon` integration and package have been removed.
-- Installed `@iconify-json/*` icon sets (`lucide`, `fa6-brands`) are available for offline resolution; `@iconify/svelte` is still used by Storybook to register collections.
+- `@iconify/svelte` is still used by Storybook to register collections.
 
 ## Sidebar & theme
 
