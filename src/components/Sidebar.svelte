@@ -33,10 +33,10 @@
       </div>
       <hgroup>
         <h3>Edward Heaver</h3>
-        <p style="width: 20ch;">Senior Backend Engineer</p>
+        <p class="job-title">Senior Backend Engineer</p>
       </hgroup>
     </div>
-    <ul style="width: 22ch;">
+    <ul class="nav-list">
       {#each navItems as item}
         <li class={isActive(item) ? 'active' : ''}>
           <a href={item.href} data-nav-link>
@@ -58,7 +58,7 @@
 
   #nav-container {
     position: relative;
-    grid-area: "sidebar";
+    grid-area: sidebar;
     padding-left: var(--pico-spacing);
   }
 
@@ -88,7 +88,7 @@
     padding-top: var(--pico-spacing);
     box-sizing: border-box;
     height: 100vh;
-    width: clamp(280px, 300px, 17%);
+    width: clamp(280px, 17%, 300px);
     position: fixed;
     inset: 0 auto 0 0;
     align-self: start;
@@ -107,7 +107,7 @@
       justify-content: flex-start;
       align-items: flex-start;
       flex-wrap: nowrap;
-      width: 100px;
+      width: 22ch;
 
       & a {
         color: var(--pico-dark);
@@ -187,6 +187,10 @@
 
   hgroup {
     padding-top: var(--pico-spacing);
+  }
+
+  .job-title {
+    width: 20ch;
   }
 
   .socials {

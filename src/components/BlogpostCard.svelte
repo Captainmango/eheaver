@@ -24,7 +24,7 @@
     <h5 class="title">{title}</h5>
     <p class="date"><FormattedDate date={publishDate} /></p>
   </hgroup>
-  <a href={mediumLink} style="width: 90%;" target="_blank">Read on Medium</a>
+  <a href={mediumLink} target="_blank" rel="noopener noreferrer">Read on Medium</a>
 </article>
 
 <style lang="scss">
@@ -77,10 +77,8 @@
       }
     }
 
-    @if map.get(settings.$breakpoints, "md") {
-      @media (min-width: map.get(map.get(settings.$breakpoints, "md"), "breakpoint")) {
-        grid-template-columns: repeat(auto-fit, minmax(0%, 1fr));
-      }
+    & > a {
+      width: 90%;
     }
   }
 </style>

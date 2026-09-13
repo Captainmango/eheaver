@@ -40,19 +40,14 @@ const optimisedHeadshot = await getImage({
 
       updateTheme();
       window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateTheme);
+    </script>
+    <script>
+      import { toggleTheme } from '../lib/theme.ts';
 
       document.addEventListener('DOMContentLoaded', () => {
         const themeToggle = document.getElementById('theme-toggle');
         if (themeToggle) {
-          themeToggle.addEventListener('click', (event) => {
-            event.preventDefault();
-            const currentTheme = document.documentElement.getAttribute('data-theme');
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            document.documentElement.setAttribute('data-theme', newTheme);
-            if (typeof localStorage !== 'undefined') {
-              localStorage.setItem('theme', newTheme);
-            }
-          });
+          themeToggle.addEventListener('click', toggleTheme);
         }
       });
     </script>
@@ -75,7 +70,7 @@ const optimisedHeadshot = await getImage({
   :global(.page-grid) {
     display: grid;
     grid-template-rows: 20px calc(max(90dvh, 100%) - 200px) 200px;
-    grid-template-columns: clamp(280px, 600px, 20%) 1fr;
+    grid-template-columns: clamp(280px, 20%, 600px) 1fr;
     grid-template-areas:
       "sidebar header"
       "sidebar content"

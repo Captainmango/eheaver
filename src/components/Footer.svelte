@@ -9,8 +9,7 @@
     display: flex;
     justify-content: center;
     padding: 2em 1em 6em 1em;
-    background: linear-gradient(var(--gray-gradient)) no-repeat;
-    color: rgb(var(--gray));
+    color: var(--pico-muted-color);
     text-align: center;
   }
 </style>

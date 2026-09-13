@@ -3,23 +3,23 @@ import Layout from "../layouts/Layout.astro"
 ---
 
 <Layout title="About me">
-    <section class="container">
-        <h1>
-            About me
-        </h1>
+  <section class="container">
+    <h1>About me</h1>
 
-        <p class="content">
-            Hi I’m Ed. I’m a Backend Engineer with a passion for creating easy, friction-less user journeys. 
-            <br><br>
-            I always love a challenge and my modus operandi is to always find the simplest way to achieve what a user needs. 
-            <br><br>
-            I'm an avid homelabber and highly passionate about learning and mastery of software development.
-        </p>
-    </section>
+    <div class="content">
+      <p>Hi I'm Ed. I'm a Backend Engineer with a passion for creating easy, friction-less user journeys.</p>
+      <p>I always love a challenge and my modus operandi is to always find the simplest way to achieve what a user needs.</p>
+      <p>I'm an avid homelabber and highly passionate about learning and mastery of software development.</p>
+    </div>
+  </section>
 </Layout>
 
 <style lang="scss">
-    .content {
-        max-width: 60ch;
+  .content {
+    max-width: 60ch;
+
+    & p {
+      margin-bottom: var(--pico-spacing);
     }
+  }
 </style>

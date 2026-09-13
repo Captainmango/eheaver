@@ -5,7 +5,7 @@ const medium = defineCollection({
   loader: mediumLoader({
     username: 'edward-heaver',
     storage: {
-      enabled: process.env.NODE_ENV !== "production",
+      enabled: !import.meta.env.PROD,
       path: '.astro/storage/medium'
     }
   })

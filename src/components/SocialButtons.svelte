@@ -1,25 +1,18 @@
 <script lang="ts">
   import InlineIcon from './InlineIcon.svelte';
-
-  function toggleTheme(event: MouseEvent) {
-    event.preventDefault();
-    const currentTheme = document.documentElement.getAttribute('data-theme');
-    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-    document.documentElement.setAttribute('data-theme', newTheme);
-    localStorage.setItem('theme', newTheme);
-  }
+  import { toggleTheme } from '../lib/theme.ts';
 </script>
 
 <div class="wrapper">
-  <a id="theme-toggle" href="/" onclick={toggleTheme}>
+  <button id="theme-toggle" type="button" aria-label="Toggle theme" onclick={toggleTheme}>
     <span class="sun-icon"><InlineIcon icon="lucide:sun" width={28} /></span>
     <span class="moon-icon"><InlineIcon icon="lucide:moon" width={28} /></span>
-  </a>
-  <span class="socials-boarder"></span>
+  </button>
+  <span class="socials-border"></span>
   <ul class="socials">
-    <li><a href="https://github.com/Captainmango" target="_blank"><InlineIcon icon="fa6-brands:github" width={28} /></a></li>
-    <li><a href="https://www.linkedin.com/in/edward-heaver-9ba556a0/" target="_blank"><InlineIcon icon="fa6-brands:linkedin-in" width={28} /></a></li>
-    <li><a href="https://x.com/EdwardHeaver6" target="_blank"><InlineIcon icon="fa6-brands:x-twitter" width={28} /></a></li>
+    <li><a href="https://github.com/Captainmango" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><InlineIcon icon="fa6-brands:github" width={28} /></a></li>
+    <li><a href="https://www.linkedin.com/in/edward-heaver-9ba556a0/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><InlineIcon icon="fa6-brands:linkedin-in" width={28} /></a></li>
+    <li><a href="https://x.com/EdwardHeaver6" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)"><InlineIcon icon="fa6-brands:x-twitter" width={28} /></a></li>
   </ul>
 </div>
 
@@ -32,8 +25,25 @@
     justify-content: flex-start;
     width: 22ch;
 
-    & > a {
+    & > button {
+      display: block;
       align-self: center;
+      width: 48px;
+      height: 50px;
+      padding: 10px;
+      margin: 0;
+      background: none;
+      border: none;
+      border-radius: 0;
+      box-shadow: none;
+      cursor: pointer;
+      color: var(--pico-primary);
+      line-height: 30px;
+      transition: color 0.2s ease-in-out;
+
+      &:hover {
+        color: var(--pico-primary-hover);
+      }
     }
   }
 
@@ -50,11 +60,11 @@
     }
   }
 
-  .socials-boarder {
+  .socials-border {
     z-index: 999;
     border-right: solid 2px var(--pico-color);
-    margin-right: 0.75rem;
-    margin-left: 0.75rem;
+    margin-right: 1rem;
+    margin-left: 0.25rem;
     opacity: 60%;
     height: 1.5rem;
     align-self: center;

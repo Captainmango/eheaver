@@ -25,4 +25,22 @@ Running `pnpm storybook` will start the Storybook dev server at `http://localhos
 
 ## Deployment
 
-The project is deployed automatically on every push to GitHub using [Cloudflare Workers](https://workers.cloudflare.com/) and [Wrangler](https://developers.cloudflare.com/workers/wrangler/). No manual build or deploy steps are required—just push your changes and the site will be live shortly after.
+The site is deployed manually. Build the static site and push it to your hosting target.
+
+### Surge
+
+```sh
+pnpm build
+surge ./dist eheaver.cloud
+```
+
+### Cloudflare Pages
+
+`wrangler.toml` at the repo root supplies the project name, compatibility date, and build output directory. Build and deploy with Wrangler:
+
+```sh
+pnpm build
+wrangler pages deploy ./dist
+```
+
+There is no GitHub Actions workflow at the moment; deploy manually with either of the commands above.

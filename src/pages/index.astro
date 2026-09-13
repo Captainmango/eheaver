@@ -5,12 +5,10 @@ import { getCollection } from 'astro:content';
 
 const posts = (await getCollection("medium"))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-  .map(post => {
-    if (post.data.heroImage?.startsWith("https://medium.com/_")) {
-      post.data.heroImage = undefined;
-    }
-    return post.data;
-  });
+  .map(post => ({
+    ...post.data,
+    heroImage: post.data.heroImage?.startsWith("https://medium.com/_") ? undefined : post.data.heroImage,
+  }));
 ---
 
 <Layout title="Blogposts">
